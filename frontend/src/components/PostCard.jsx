@@ -2,20 +2,23 @@ import { useEffect, useState } from "react";
 import API from "../api/api";
 import CommentTree from "./CommentTree";
 
+import { useCallback } from "react";
+
+
 export default function PostCard({ post }) {
 
   const [comments, setComments] = useState([]);
   const [text, setText] = useState("");
 
-  const loadComments = async () => {
+const loadComments = useCallback(async () => {
     const res = await API.get(`comments/${post.id}/`);
     setComments(res.data);
-  };
+}, [post.id]);
+
 
 useEffect(() => {
   loadComments();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
+}, [loadComments]);
 
 
   const likePost = async () => {
