@@ -12,9 +12,10 @@ export default function PostCard({ post }) {
     setComments(res.data);
   };
 
-  useEffect(() => {
-    loadComments();
-  }, []);
+useEffect(() => {
+  loadComments();
+}, [loadComments]);
+
 
   const likePost = async () => {
     await API.post(`like-post/${post.id}/`);
