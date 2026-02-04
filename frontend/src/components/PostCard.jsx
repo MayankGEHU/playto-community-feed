@@ -14,7 +14,8 @@ export default function PostCard({ post }) {
 
 useEffect(() => {
   loadComments();
-}, [loadComments]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
 
   const likePost = async () => {
